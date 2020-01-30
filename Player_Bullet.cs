@@ -14,9 +14,17 @@ public class Player_Bullet : MonoBehaviour{
 		//移動
 			transform.position += transform.up * speed * Time.deltaTime;
 	}
-	//他のオブジェクトとの当たり判定
+	//他のオブジェクトとの当たり判定(triger)
 	void OnTriggerEnter( Collider other) {
 		if(other.tag == "Wall_Up"){
+			//gcって仮の変数にGameControllerのコンポーネントを入れる
+			GameController gc = gameController.GetComponent<GameController>();
+			//画面内の弾数を減算
+			gc.shotNum --;
+			Destroy(gameObject);	//このGameObjectを［Hierrchy］ビューから削除する
+		}
+		if(other.tag == "Enemy"){
+			Debug.Log("hit");
 			//gcって仮の変数にGameControllerのコンポーネントを入れる
 			GameController gc = gameController.GetComponent<GameController>();
 			//画面内の弾数を減算
