@@ -24,7 +24,6 @@ public class Player_Bullet : MonoBehaviour{
 			Destroy(gameObject);	//このGameObjectを［Hierrchy］ビューから削除する
 		}
 		if(other.tag == "Enemy"){
-			Debug.Log("hit");
 			//gcって仮の変数にGameControllerのコンポーネントを入れる
 			GameController gc = gameController.GetComponent<GameController>();
 			//画面内の弾数を減算
