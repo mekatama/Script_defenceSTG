@@ -12,16 +12,19 @@ public class Player_Move : MonoBehaviour{
 	}
 
 	void Update(){
-		//右の壁に接触したら
-		if(childScript.isWallHit_R == true){
-			//左移動
-			transform.position -= transform.right * speed * Time.deltaTime;
-		}
+		//isStopで移動するかどうか判定する
+		if(childScript.isStop == false){
+			//右の壁に接触したら
+			if(childScript.isWallHit_R == true){
+				//左移動
+				transform.position -= transform.right * speed * Time.deltaTime;
+			}
 
-		//左の壁に接触したら
-		if(childScript.isWallHit_L == true){
-			//右移動
-			transform.position += transform.right * speed * Time.deltaTime;
+			//左の壁に接触したら
+			if(childScript.isWallHit_L == true){
+				//右移動
+				transform.position += transform.right * speed * Time.deltaTime;
+			}
 		}
 	}
 }
