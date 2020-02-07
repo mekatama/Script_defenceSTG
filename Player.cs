@@ -36,6 +36,27 @@ public class Player : MonoBehaviour{
 				}
 			}
 		}
+		//離した判定
+ 		if(Input.GetMouseButtonUp(0)){
+			Ray ray = new Ray();
+            RaycastHit hit = new RaycastHit();
+			ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+			if(Physics.Raycast(ray, out hit)){
+				tapObj = hit.collider.gameObject;	//tapしたobject取得
+			}else{
+				tapObj = null;						//object以外をタッチした扱い
+			}
+
+			//tapObjが離した時判定。error対策
+			if(tapObj != null){
+				//Playerをtapしたら
+				if(tapObj.tag == "Player"){
+					isStop = false;
+					Debug.Log("hanasita");
+				}
+			}
+		}
 	}
 
 
