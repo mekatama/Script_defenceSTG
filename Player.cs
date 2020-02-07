@@ -7,10 +7,12 @@ public class Player : MonoBehaviour{
 	public bool isWallHit_R;//wall hit flag
 	public bool isWallHit_L;//wall hit flag
 	GameObject tapObj;		//tapしたオブジェクト入れる用
+	public bool isStop;		//stop flag
 
 	void Start(){
 		isWallHit_R = false;//初期化
-		isWallHit_L = true;//初期化、右に移動したい
+		isWallHit_L = true;	//初期化、右に移動したい
+		isStop = false;		//初期化
 	}
 	void Update () {
 		//タップした判定
@@ -21,11 +23,19 @@ public class Player : MonoBehaviour{
 
 			if(Physics.Raycast(ray, out hit)){
 				tapObj = hit.collider.gameObject;	//tapしたobject取得
-				Debug.Log("name : " + tapObj.transform.name);
 			}else{
 				tapObj = null;						//object以外をタッチした扱い
 			}
-		 }
+
+			//tapObjがタッチされた時判定。error対策
+			if(tapObj != null){
+				//Playerをtapしたら
+				if(tapObj.tag == "Player"){
+					isStop = true;
+					Debug.Log("touch");
+				}
+			}
+		}
 	}
 
 
