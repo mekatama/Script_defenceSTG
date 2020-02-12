@@ -30,6 +30,10 @@ public class Enemy1 : MonoBehaviour{
 			}
 			Destroy(gameObject);	//このGameObjectを［Hierrchy］ビューから削除する
 		}
+		if(other.tag == "Bom"){
+			isDead = true;
+			Destroy(gameObject);	//このGameObjectを［Hierrchy］ビューから削除する
+		}
 		if(other.tag == "Line"){
 			if(isTouch == false){
 				//gcって仮の変数にGameControllerのコンポーネントを入れる
