@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player_Shot : MonoBehaviour{
 	GameObject gameController;						//検索したオブジェクト入れる用
 	public GameObject bulletObject = null;			//弾プレハブ
+	public GameObject bomObject = null;				//ボムプレハブ
 	public Transform bulletStartPosition = null;	//弾の発射位置を取得する
 
 	void Start(){
@@ -23,5 +24,12 @@ public class Player_Shot : MonoBehaviour{
 			//画面内の弾数を加算
 			gc.shotNum ++;
 		}
+	}
+	//BOM発射
+	public void PlayerBomShot(){
+		//弾を生成する位置を指定
+		Vector3 vecBulletPos = bulletStartPosition.position;
+		//弾を生成
+		Instantiate(bomObject, vecBulletPos, transform.rotation);
 	}
 }
