@@ -27,9 +27,15 @@ public class Player_Shot : MonoBehaviour{
 	}
 	//BOM発射
 	public void PlayerBomShot(){
-		//弾を生成する位置を指定
-		Vector3 vecBulletPos = bulletStartPosition.position;
-		//弾を生成
-		Instantiate(bomObject, vecBulletPos, transform.rotation);
+		//gcって仮の変数にGameControllerのコンポーネントを入れる
+		GameController gc = gameController.GetComponent<GameController>();
+		if(gc.isBom){
+			//弾を生成する位置を指定
+			Vector3 vecBulletPos = bulletStartPosition.position;
+			//弾を生成
+			Instantiate(bomObject, vecBulletPos, transform.rotation);
+			//減らす
+			gc.bomNum --;
+		}
 	}
 }
