@@ -8,13 +8,15 @@ public class GameController : MonoBehaviour{
 	public bool isShot;		//発射flag
 	public int lineEnemyNum;//防衛線に乗っている敵の数
 	public bool isFall;		//落下flag
-
+	public int bomNum;		//Bomの残弾数
+	public bool isBom;		//Bom発射flag
 
 	void Start(){
 		shotNum = 0;		//初期化
 		isShot = false;		//初期化
 		lineEnemyNum = 0;	//初期化
 		isFall = false;		//初期化
+		isBom = true;		//初期化
 	}
 
 	void Update(){
@@ -30,6 +32,13 @@ public class GameController : MonoBehaviour{
 		//防衛線落下判定
 		if(lineEnemyNum >= 3){
 			isFall = true;
+		}
+
+		//Bom発射判定
+		if(bomNum > 0){
+			isBom = true;
+		}else{
+			isBom = false;
 		}
 	}
 }
