@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy1 : MonoBehaviour{
+	public GameObject bomObject;//Bomプレハブ
+	public GameObject bom;
 	GameObject gameController;	//検索したオブジェクト入れる用
 	private bool isTouch;		//接触flag
 	private bool isDead;		//死亡flag
@@ -11,11 +13,22 @@ public class Enemy1 : MonoBehaviour{
 		gameController = GameObject.FindWithTag ("GameController");	//GameControllerを探す
 		isTouch = false;	//初期化
 		isDead = false;		//初期化
+		bom = null;			//初期化
 	}
 
 	//他のオブジェクトとの当たり判定(triger)
 	void OnTriggerEnter( Collider other) {
 		if(other.tag == "Bullet"){
+			//Bom生成
+			int randBom = Random.Range(0,4); //ランダムでspawnを決める
+			if(randBom == 0){
+				bom = (GameObject)Instantiate(
+					bomObject,
+					transform.position,
+					transform.rotation
+				);
+			}
+
 			isDead = true;
 			//lineから離れた判定
 			if(isTouch == true){
