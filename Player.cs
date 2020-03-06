@@ -15,7 +15,8 @@ public class Player : MonoBehaviour{
 	GameObject gageSystem;	//ゲージ用オブジェクト入れる用
 	float currentHP;		//ゲージ制御用
 	int maxHP;				//ゲージ制御用
-	public Canvas Canvas_Gage;	//UI
+	public Canvas Canvas_Gage;		//UI
+	public Canvas Canvas_InGame2;	//UI
 
 	void Start(){
 		gameController = GameObject.FindWithTag ("GameController");	//GameControllerを探す
@@ -25,7 +26,9 @@ public class Player : MonoBehaviour{
 		stopCount = stopCountMax;
 		gageSystem = GameObject.Find("GageSystem");
 		Canvas_Gage.enabled = false;	//UI非表示
+		Canvas_InGame2.enabled = false;	//UI非表示
 	}
+
 	void Update () {
 		//タップした判定
  		if(Input.GetMouseButtonDown(0)){
@@ -72,11 +75,18 @@ public class Player : MonoBehaviour{
 
 		//stopカウント処理
 		if(isStop == true){
-			stopCount -= 1;					//カウント減算
+			stopCount -= 3;					//カウント減算
 			Canvas_Gage.enabled = true;		//UI表示
+			if(stopCount <= 0){
+				//gcって仮の変数にGameControllerのコンポーネントを入れる
+				GameController gc = gameController.GetComponent<GameController>();
+				gc.isPenalty = true;
+				Canvas_Gage.enabled = false;//UI非表示
+				Canvas_InGame2.enabled = true;	//UI非表示
+			}
 		}
 		if(isStop == false && stopCount < stopCountMax){
-			stopCount += 1;					//カウント加算
+			stopCount += 3;					//カウント加算
 			if(stopCount >= stopCountMax){
 				stopCount = stopCountMax;	//カウントMAX以上にしない
 				Canvas_Gage.enabled = false;//UI非表示
