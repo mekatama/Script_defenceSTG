@@ -10,6 +10,8 @@ public class GameController : MonoBehaviour{
 	public bool isFall;		//落下flag
 	public int bomNum;		//Bomの残弾数
 	public bool isBom;		//Bom発射flag
+	public float penaltyTime;	//speeDownする時間
+	public bool isPenalty;		//penalty flag
 
 	void Start(){
 		shotNum = 0;		//初期化
@@ -17,6 +19,7 @@ public class GameController : MonoBehaviour{
 		lineEnemyNum = 0;	//初期化
 		isFall = false;		//初期化
 		isBom = true;		//初期化
+		isPenalty = false;	//初期化
 	}
 
 	void Update(){
