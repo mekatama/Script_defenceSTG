@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour{
 	public int bomNum;		//Bomの残弾数
 	public bool isBom;		//Bom発射flag
 	public float penaltyTime;	//speeDownする時間
+	private float timeElapsed;	//時間を仮に格納する変数
 	public bool isPenalty;		//penalty flag
 
 	void Start(){
@@ -43,5 +44,14 @@ public class GameController : MonoBehaviour{
 		}else{
 			isBom = false;
 		}
+
+		//Penaltyのカウント
+		if(isPenalty == true){
+			timeElapsed += Time.deltaTime;	//経過時間の保存
+			if(timeElapsed >= penaltyTime){	//指定した経過時間に達したら
+				isPenalty = false;			//penalty終了
+			}
+		}
+
 	}
 }
