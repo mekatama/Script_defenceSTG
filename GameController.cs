@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour{
 	public bool isShot;		//発射flag
 	public int lineEnemyNum;//防衛線に乗っている敵の数
 	public bool isFall;		//落下flag
+	public int totalScore;	//スコア
 	public int bomNum;		//Bomの残弾数
 	public bool isBom;		//Bom発射flag
 	public float penaltyTime;	//speeDownする時間
