@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy1 : MonoBehaviour{
+	public int enemyScore;
 	public GameObject bomObject;//Bomプレハブ
 	public GameObject bom;
 	GameObject gameController;	//検索したオブジェクト入れる用
@@ -28,13 +29,16 @@ public class Enemy1 : MonoBehaviour{
 					transform.rotation
 				);
 			}
-
+			//gcって仮の変数にGameControllerのコンポーネントを入れる
+			GameController gc = gameController.GetComponent<GameController>();
+			gc.totalScore += enemyScore;
 			isDead = true;
+
 			//lineから離れた判定
 			if(isTouch == true){
 				if(isDead == true){
 					//gcって仮の変数にGameControllerのコンポーネントを入れる
-					GameController gc = gameController.GetComponent<GameController>();
+//					GameController gc = gameController.GetComponent<GameController>();
 					//Line上の敵数を減算
 					gc.lineEnemyNum --;
 					Debug.Log("linehanareru:" + gc.lineEnemyNum);
@@ -45,6 +49,9 @@ public class Enemy1 : MonoBehaviour{
 		}
 		if(other.tag == "Bom"){
 			isDead = true;
+			//gcって仮の変数にGameControllerのコンポーネントを入れる
+			GameController gc = gameController.GetComponent<GameController>();
+			gc.totalScore += enemyScore;
 			Destroy(gameObject);	//このGameObjectを［Hierrchy］ビューから削除する
 		}
 		if(other.tag == "Line"){
