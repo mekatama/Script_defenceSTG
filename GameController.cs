@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour{
 	public int shotNum;		//画面内の弾数
@@ -53,6 +54,9 @@ public class GameController : MonoBehaviour{
 				isPenalty = false;			//penalty終了
 			}
 		}
-
+	}
+	//return用の制御関数
+	public void ButtonClicked_Return(){
+		SceneManager.LoadScene("title");	//シーンのロード
 	}
 }
